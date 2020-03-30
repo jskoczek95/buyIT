@@ -1,0 +1,11 @@
+CREATE TABLE USERS (
+id UUID PRIMARY KEY,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL,
+email VARCHAR(50) NOT NULL,
+address VARCHAR(50) NOT NULL,
+password VARCHAR(255),
+enabled boolean,
+created_on TIMESTAMP NOT NULL,
+modified_on TIMESTAMP NOT NULL
+)

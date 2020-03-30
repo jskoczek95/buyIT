@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?useSSL=false
+    username: postgres
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+security:
+  clientId: secretclient
+  client-secret: secret
+  expiration-time: 1800000
+server:
+  port: 8090
