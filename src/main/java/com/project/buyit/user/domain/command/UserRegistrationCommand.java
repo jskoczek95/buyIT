@@ -1,20 +1,16 @@
-package com.project.buyit.user;
+package com.project.buyit.user.domain.command;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Data
-@Entity
-@Table(name = "users")
-@EqualsAndHashCode(callSuper = false)
 @Builder
-public class User extends AuditBase {
+@AllArgsConstructor
+@Data
+public class UserRegistrationCommand {
 
     @NotBlank
     private String firstName;
@@ -27,5 +23,4 @@ public class User extends AuditBase {
     private String address;
     @NotBlank
     private String password;
-    private boolean enabled;
 }
