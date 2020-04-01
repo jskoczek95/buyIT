@@ -1,4 +1,4 @@
-package com.project.buyit.user;
+package com.project.buyit.user.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,16 +1,12 @@
-package com.project.buyit.user;
+package com.project.buyit.user.domain.query;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Builder
-@AllArgsConstructor
 @Data
-public class UserDto {
+public class UserDetailsQuery {
 
     @NotBlank
     private String firstName;
@@ -21,6 +17,4 @@ public class UserDto {
     private String email;
     @NotBlank
     private String address;
-    @NotBlank
-    private String password;
 }
