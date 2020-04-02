@@ -1,8 +1,8 @@
 package com.project.buyit.user.domain.command;
 
 import com.project.buyit.user.domain.User;
-import com.project.buyit.user.validation.UserError;
-import com.project.buyit.user.validation.UserValidator;
+import com.project.buyit.user.domain.UserValidator;
+import com.project.buyit.validation.ResponseError;
 import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +18,7 @@ class UserCommandServiceImpl implements UserCommandService {
     private final UserValidator userValidator;
 
     @Override
-    public Either<UserError, User> createUser(UserRegistrationCommand userRegistrationCommand) {
+    public Either<ResponseError, User> createUser(UserRegistrationCommand userRegistrationCommand) {
         return userValidator.validate(userRegistrationCommand)
                 .map(commandMapper::toEntity)
                 .map(user -> {
