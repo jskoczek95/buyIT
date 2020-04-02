@@ -22,7 +22,8 @@ public class UserQueryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDetailsQuery> getUserById(@PathVariable UUID id) {
-        return queryService.findById(id).map(ResponseEntity::ok)
+        return queryService.findById(id)
+                .map(ResponseEntity::ok)
                 .getOrElse(ResponseEntity.notFound().build());
     }
 

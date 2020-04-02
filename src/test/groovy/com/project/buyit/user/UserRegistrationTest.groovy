@@ -1,4 +1,4 @@
-package com.project.buyit
+package com.project.buyit.user
 
 
 import com.project.buyit.user.domain.command.UserRegistrationCommand

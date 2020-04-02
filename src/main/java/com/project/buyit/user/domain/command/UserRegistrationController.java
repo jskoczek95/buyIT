@@ -1,6 +1,6 @@
 package com.project.buyit.user.domain.command;
 
-import com.project.buyit.user.validation.ValidationResolver;
+import com.project.buyit.validation.ValidationResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
