@@ -17,14 +17,6 @@ public class OfferDataAdapter implements OfferDataProvider {
         this.commandRepository = commandRepository;
     }
 
-    private static OfferEntity toEntity(OfferDomain offer) {
-        return new OfferEntity(offer.getTitle(), offer.getDescription(), offer.getPrice());
-    }
-
-    private static OfferDomain toDomain(OfferEntity offerEntity) {
-        return new OfferDomain(offerEntity.getTitle(), offerEntity.getDescription(), offerEntity.getPrice());
-    }
-
     @Override
     public OfferDomain create(OfferDomain offerDomain) {
         OfferEntity offerEntity = toEntity(offerDomain);
@@ -36,5 +28,13 @@ public class OfferDataAdapter implements OfferDataProvider {
     public OfferDomain findById(UUID id) {
         OfferEntity offerEntity = commandRepository.findById(id);
         return toDomain(offerEntity);
+    }
+
+    private static OfferEntity toEntity(OfferDomain offer) {
+        return new OfferEntity(offer.getTitle(), offer.getDescription(), offer.getStartingPrice());
+    }
+
+    private static OfferDomain toDomain(OfferEntity offerEntity) {
+        return new OfferDomain(offerEntity.getTitle(), offerEntity.getDescription(), offerEntity.getPrice());
     }
 }

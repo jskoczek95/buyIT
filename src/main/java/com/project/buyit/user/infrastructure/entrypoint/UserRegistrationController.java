@@ -1,5 +1,6 @@
-package com.project.buyit.user.domain.command;
+package com.project.buyit.user.infrastructure.entrypoint;
 
+import com.project.buyit.user.infrastructure.UserService;
 import com.project.buyit.validation.ValidationResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,10 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserRegistrationController {
 
-    private final UserCommandService commandService;
+    private final UserService userService;
 
     @PostMapping(path = "/registration", consumes = "application/json")
     public ResponseEntity registerUser(@RequestBody @Valid UserRegistrationCommand userRegistrationCommand) {
-        return ValidationResolver.resolve(commandService.createUser(userRegistrationCommand));
+        return ValidationResolver.resolve(userService.createUser(userRegistrationCommand));
     }
 }

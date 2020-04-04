@@ -1,5 +1,6 @@
-package com.project.buyit.user.domain.query;
+package com.project.buyit.user.infrastructure.entrypoint;
 
+import com.project.buyit.user.infrastructure.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,17 +19,17 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UserQueryController {
 
-    private final UserQueryService queryService;
+    private final UserService userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDetailsQuery> getUserById(@PathVariable UUID id) {
-        return queryService.findById(id)
+        return userService.findById(id)
                 .map(ResponseEntity::ok)
                 .getOrElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
     public Page<UserDetailsQuery> getAllUsers(@PageableDefault(size = 10, sort = {"lastName"}, direction = Sort.Direction.ASC) Pageable pageable) {
-        return queryService.getAllUsers(pageable);
+        return userService.getAllUsers(pageable);
     }
 }

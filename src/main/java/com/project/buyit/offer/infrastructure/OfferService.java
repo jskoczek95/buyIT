@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class OfferCommandService {
+public class OfferService {
 
     private final OfferFacade offerFacade;
 

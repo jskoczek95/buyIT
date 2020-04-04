@@ -33,7 +33,7 @@ class OfferFacadeTest extends Specification {
         then:
         result.description == offerCreationDto.description
         result.title == offerCreationDto.title
-        result.price == offerCreationDto.price
+        result.startingPrice == offerCreationDto.price
     }
 
     @Unroll
@@ -69,7 +69,7 @@ class OfferFacadeTest extends Specification {
         result.id == offerDomain.id
         result.title == offerDomain.title
         result.description == offerDomain.description
-        result.price == offerDomain.price
+        result.startingPrice == offerDomain.startingPrice
         result == offerDomain
     }
 
