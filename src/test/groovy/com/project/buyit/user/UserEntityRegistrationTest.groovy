@@ -1,7 +1,7 @@
 package com.project.buyit.user
 
 
-import com.project.buyit.user.domain.command.UserRegistrationCommand
+import com.project.buyit.user.infrastructure.entrypoint.UserRegistrationCommand
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-class UserRegistrationTest extends Specification {
+class UserEntityRegistrationTest extends Specification {
 
     @Autowired
     private MockMvc mockMvc

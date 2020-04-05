@@ -1,6 +1,6 @@
 package com.project.buyit.configuration.security;
 
-import com.project.buyit.user.domain.User;
+import com.project.buyit.user.infrastructure.repository.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,10 +9,10 @@ import java.util.Collections;
 
 class UserPrincipal implements UserDetails {
 
-    private User user;
+    private UserEntity userEntity;
 
-    public UserPrincipal(User user) {
-        this.user = user;
+    public UserPrincipal(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     @Override
@@ -22,12 +22,12 @@ class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return userEntity.getEmail();
     }
 
     @Override

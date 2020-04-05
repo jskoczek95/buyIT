@@ -1,16 +1,22 @@
-package com.project.buyit.user.domain.command;
+package com.project.buyit.user.infrastructure.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Builder
-@AllArgsConstructor
 @Data
-public class UserRegistrationCommand {
+@Entity
+@Table(name = "users")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserEntity extends AuditBase {
 
     @NotBlank
     private String firstName;
@@ -23,4 +29,5 @@ public class UserRegistrationCommand {
     private String address;
     @NotBlank
     private String password;
+    private boolean enabled;
 }
