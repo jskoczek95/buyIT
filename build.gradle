@@ -34,6 +34,7 @@ ext {
     set('spockSpringVersion', "1.2-groovy-2.5")
     set('h2DatabaseVersion', "1.4.200")
     set('mapstructVersion', "1.3.0.Final")
+    set('archUnitVersion', "0.13.1")
 }
 
 dependencies {
@@ -60,7 +61,8 @@ dependencies {
             "org.codehaus.groovy:groovy-all:${groovyVersion}",
             "org.springframework.security:spring-security-test")
     testCompile("org.spockframework:spock-spring:${spockSpringVersion}",
-            "com.h2database:h2:${h2DatabaseVersion}")
+            "com.h2database:h2:${h2DatabaseVersion}",
+            "com.tngtech.archunit:archunit:${archUnitVersion}")
 }
 
 application {
