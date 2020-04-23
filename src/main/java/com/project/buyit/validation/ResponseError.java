@@ -7,7 +7,8 @@ public enum ResponseError {
 
     NOT_UNIQUE_EMAIL(400, "User with given email already exists"),
     WRONG_PRICE_FORMAT(400, "You have provided wrong price format"),
-    EMPTY_TITLE_OR_DESCRIPTION(400, "Either title or description are empty");
+    EMPTY_TITLE_OR_DESCRIPTION(400, "Either title or description are empty"),
+    PRICE_TOO_LOW(400, "You need to provide higher bid!");
 
     private int httpCode;
     private String message;

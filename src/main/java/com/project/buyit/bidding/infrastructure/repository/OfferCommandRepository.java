@@ -1,4 +1,4 @@
-package com.project.buyit.offer.infrastructure.repository;
+package com.project.buyit.bidding.infrastructure.repository;
 
 import org.springframework.data.repository.Repository;
 
