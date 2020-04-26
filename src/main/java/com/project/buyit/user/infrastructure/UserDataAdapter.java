@@ -1,13 +1,12 @@
 package com.project.buyit.user.infrastructure;
 
-import com.project.buyit.user.domain.UserCommandMapper;
 import com.project.buyit.user.domain.UserDataProvider;
 import com.project.buyit.user.domain.UserDomain;
-import com.project.buyit.user.domain.UserQueryMapper;
 import com.project.buyit.user.infrastructure.repository.UserCommandRepository;
 import com.project.buyit.user.infrastructure.repository.UserEntity;
 import com.project.buyit.user.infrastructure.repository.UserQueryRepository;
 import io.vavr.control.Option;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -15,40 +14,33 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
+@RequiredArgsConstructor
 class UserDataAdapter implements UserDataProvider {
 
-    private UserCommandRepository commandRepository;
-    private UserQueryRepository queryRepository;
-    private UserCommandMapper commandMapper;
-    private UserQueryMapper queryMapper;
-
-    public UserDataAdapter(UserCommandRepository commandRepository, UserQueryRepository queryRepository, UserCommandMapper commandMapper, UserQueryMapper queryMapper) {
-        this.commandRepository = commandRepository;
-        this.queryRepository = queryRepository;
-        this.commandMapper = commandMapper;
-        this.queryMapper = queryMapper;
-    }
+    private final UserCommandRepository commandRepository;
+    private final UserQueryRepository queryRepository;
+    private final UserMapper userMapper;
 
     @Override
     public UserDomain save(UserDomain userDomain) {
-        UserEntity userEntity = commandMapper.toEntity(userDomain);
+        UserEntity userEntity = userMapper.toEntity(userDomain);
         commandRepository.save(userEntity);
         return userDomain;
     }
 
     @Override
     public Option<UserDomain> findByEmail(String email) {
-        return queryRepository.findByEmail(email).map(queryMapper::toDomain);
+        return queryRepository.findByEmail(email).map(userMapper::toDomain);
     }
 
     @Override
     public Page<UserDomain> findAll(Pageable pageable) {
-        return queryRepository.findAll(pageable).map(queryMapper::toDomain);
+        return queryRepository.findAll(pageable).map(userMapper::toDomain);
     }
 
     @Override
     public UserDomain findById(UUID id) {
         UserEntity userEntity = queryRepository.findById(id);
-        return queryMapper.toDomain(userEntity);
+        return userMapper.toDomain(userEntity);
     }
 }

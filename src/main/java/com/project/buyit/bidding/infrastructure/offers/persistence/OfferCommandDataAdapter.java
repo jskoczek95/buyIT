@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-class OfferCommandDataCommandAdapter implements OfferDataCommandProvider {
+class OfferCommandDataAdapter implements OfferDataCommandProvider {
 
     private final OfferCommandRepository commandRepository;
     private final OfferMapper mapper;

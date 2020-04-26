@@ -9,13 +9,20 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static com.project.buyit.bidding.domain.offers.GetOfferQuery.Output;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-class OfferFabric {
+class OfferFactory {
 
     static Offer createOffer(Input input, UserDomain user) {
         LocalDateTime expirationDate = DateUtil.addDays(input.getExpirationAfterDays());
         return new Offer(generate(), input.getTitle(), input.getDescription(), user,
                 expirationDate, input.getStartingPrice());
+    }
+
+    static Output createOutput(Offer offer) {
+        return new Output(offer.getDescription(),
+                offer.getTitle(), offer.getStartingPrice(), offer.getExpirationDate());
     }
 
     private static UUID generate() {

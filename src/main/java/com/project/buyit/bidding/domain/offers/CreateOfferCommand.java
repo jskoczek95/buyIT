@@ -16,7 +16,7 @@ public class CreateOfferCommand {
 
     public void execute(Input input, UUID creatorId) {
         UserDomain user = userDataProvider.findById(creatorId);
-        Offer offer = OfferFabric.createOffer(input, user);
+        Offer offer = OfferFactory.createOffer(input, user);
         offerDataCommandProvider.save(offer);
     }
 

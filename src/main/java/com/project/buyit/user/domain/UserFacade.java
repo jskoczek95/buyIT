@@ -1,5 +1,6 @@
 package com.project.buyit.user.domain;
 
+import com.project.buyit.user.infrastructure.UserMapper;
 import com.project.buyit.user.infrastructure.entrypoint.UserDetailsQuery;
 import com.project.buyit.user.infrastructure.entrypoint.UserRegistrationCommand;
 import com.project.buyit.validation.ResponseError;
@@ -16,9 +17,9 @@ public final class UserFacade {
     private final UserQueryService userQueryService;
     private final UserCommandService userCommandService;
 
-    public UserFacade(UserDataProvider userDataProvider, UserQueryMapper userQueryMapper, UserCommandMapper userCommandMapper, PasswordEncoder passwordEncoder) {
-        this.userQueryService = new UserQueryService(userQueryMapper, userDataProvider);
-        this.userCommandService = new UserCommandService(userCommandMapper, userDataProvider, passwordEncoder);
+    public UserFacade(UserDataProvider userDataProvider, UserMapper userMapper, PasswordEncoder passwordEncoder) {
+        this.userQueryService = new UserQueryService(userMapper, userDataProvider);
+        this.userCommandService = new UserCommandService(userMapper, userDataProvider, passwordEncoder);
     }
 
     public final Either<ResponseError, UserDomain> createUser(UserRegistrationCommand registrationCommand) {

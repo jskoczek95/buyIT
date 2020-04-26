@@ -1,5 +1,6 @@
 package com.project.buyit.user.infrastructure.repository;
 
+import com.project.buyit.bidding.infrastructure.bids.persistence.BidEntity;
 import com.project.buyit.bidding.infrastructure.offers.persistence.OfferEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,4 +38,6 @@ public class UserEntity extends AuditBase {
     private boolean enabled;
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OfferEntity> offers = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BidEntity> bids = new ArrayList<>();
 }
