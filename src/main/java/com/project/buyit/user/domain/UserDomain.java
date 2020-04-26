@@ -1,7 +1,9 @@
 package com.project.buyit.user.domain;
 
+import com.project.buyit.bidding.domain.offers.Offer;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -14,4 +16,5 @@ public class UserDomain {
     private String address;
     private String password;
     private boolean enabled;
+    private List<Offer> offers;
 }
