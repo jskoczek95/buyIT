@@ -1,5 +1,6 @@
 package com.project.buyit.user.domain;
 
+import com.project.buyit.user.infrastructure.UserMapper;
 import com.project.buyit.user.infrastructure.entrypoint.UserDetailsQuery;
 import io.vavr.control.Option;
 import io.vavr.control.Try;
@@ -12,15 +13,15 @@ import java.util.UUID;
 @RequiredArgsConstructor
 class UserQueryService {
 
-    private final UserQueryMapper queryMapper;
+    private final UserMapper userMapper;
     private final UserDataProvider userDataProvider;
 
     public Page<UserDetailsQuery> getAllUsers(Pageable pageable) {
-        return userDataProvider.findAll(pageable).map(queryMapper::toDetailsQuery);
+        return userDataProvider.findAll(pageable).map(userMapper::toDetailsQuery);
     }
 
     public Option<UserDetailsQuery> findById(UUID id) {
         return Try.ofSupplier(() -> Option.of(userDataProvider.findById(id))).getOrElse(Option.none())
-                .map(queryMapper::toDetailsQuery);
+                .map(userMapper::toDetailsQuery);
     }
 }

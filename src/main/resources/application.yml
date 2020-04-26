@@ -11,6 +11,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
   flyway:
     baseline-on-migrate: true
 security:
