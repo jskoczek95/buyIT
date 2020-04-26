@@ -1,6 +1,5 @@
 package com.project.buyit.bidding.domain.bids;
 
-import com.project.buyit.bidding.domain.BiddingValidator;
 import com.project.buyit.bidding.domain.offers.Offer;
 import com.project.buyit.bidding.domain.offers.OfferDataQueryProvider;
 import com.project.buyit.user.domain.UserDataProvider;
@@ -27,7 +26,7 @@ public class CreateBidCommand {
         UserDomain user = userDataProvider.findById(userId);
         return offerDataQueryProvider.findById(offerId)
                 .toEither(OFFER_NOT_FOUND)
-                .flatMap(myOffer -> BiddingValidator.validateBid(input)
+                .flatMap(myOffer -> BidValidator.validateBid(input)
                         .map(validatedInput -> BidFactory.createBid(validatedInput, myOffer, user))
                         .peek(bidDataCommandProvider::save)
                         .map(BidFactory::createOutput));

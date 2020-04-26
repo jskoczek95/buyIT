@@ -1,6 +1,5 @@
-package com.project.buyit.bidding.domain;
+package com.project.buyit.bidding.domain.offers;
 
-import com.project.buyit.bidding.domain.offers.CreateOfferCommand;
 import com.project.buyit.validation.ResponseError;
 import io.vavr.collection.Stream;
 import io.vavr.control.Either;
@@ -10,22 +9,11 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.project.buyit.bidding.domain.bids.CreateBidCommand.Input;
-
-public class BiddingValidator {
+class OfferValidator {
 
     private static final Pattern priceFormat = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
 
-    private BiddingValidator() {
-    }
-
-    public static Either<ResponseError, Input> validateBid(Input input) {
-        BigDecimal price = input.getUserOffer();
-        if (Objects.isNull(price) || !hasProperFormat(price)) {
-            return Either.left(ResponseError.WRONG_PRICE_FORMAT);
-        } else {
-            return Either.right(input);
-        }
+    private OfferValidator() {
     }
 
     public static Either<ResponseError, CreateOfferCommand.Input> validateOffer(CreateOfferCommand.Input input) {
@@ -44,7 +32,7 @@ public class BiddingValidator {
 
     private static boolean isNullOrEmpty(String... input) {
         return Stream.of(input)
-                .map(BiddingValidator::isNullOrEmpty)
+                .map(OfferValidator::isNullOrEmpty)
                 .fold(false, (a, b) -> a || b);
     }
 

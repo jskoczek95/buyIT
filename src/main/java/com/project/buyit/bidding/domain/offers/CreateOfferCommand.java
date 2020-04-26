@@ -1,6 +1,5 @@
 package com.project.buyit.bidding.domain.offers;
 
-import com.project.buyit.bidding.domain.BiddingValidator;
 import com.project.buyit.user.domain.UserDataProvider;
 import com.project.buyit.user.domain.UserDomain;
 import com.project.buyit.validation.ResponseError;
@@ -21,7 +20,7 @@ public class CreateOfferCommand {
 
     public Either<ResponseError, Output> execute(Input input, UUID creatorId) {
         UserDomain user = userDataProvider.findById(creatorId);
-        return BiddingValidator.validateOffer(input)
+        return OfferValidator.validateOffer(input)
                 .map(validatedInput -> OfferFactory.createOffer(validatedInput, user))
                 .peek(offerDataCommandProvider::save)
                 .map(OfferFactory::createOutput);
