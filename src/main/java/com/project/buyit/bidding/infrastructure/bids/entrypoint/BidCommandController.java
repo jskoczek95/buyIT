@@ -3,7 +3,9 @@ package com.project.buyit.bidding.infrastructure.bids.entrypoint;
 import com.project.buyit.bidding.domain.bids.CreateBidCommand;
 import com.project.buyit.bidding.domain.bids.CreateBidCommand.Input;
 import com.project.buyit.configuration.security.UserPrincipal;
+import com.project.buyit.validation.ValidationResolver;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +19,8 @@ public class BidCommandController {
     private final CreateBidCommand command;
 
     @PostMapping
-    public void create(@PathVariable UUID offerId, @RequestBody Input input, Authentication authentication) {
+    public ResponseEntity create(@PathVariable UUID offerId, @RequestBody Input input, Authentication authentication) {
         UserPrincipal currentlyLoggedUser = (UserPrincipal) authentication.getPrincipal();
-        command.execute(input, offerId, currentlyLoggedUser.getUserId());
+        return ValidationResolver.resolve(command.execute(input, offerId, currentlyLoggedUser.getUserId()));
     }
 }

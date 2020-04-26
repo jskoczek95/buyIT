@@ -21,8 +21,8 @@ class OfferFactory {
     }
 
     static Output createOutput(Offer offer) {
-        return new Output(offer.getDescription(),
-                offer.getTitle(), offer.getStartingPrice(), offer.getExpirationDate());
+        return new Output(offer.getTitle(), offer.getDescription(), offer.getExpirationDate(),
+                offer.getStartingPrice(), offer.getCreator());
     }
 
     private static UUID generate() {

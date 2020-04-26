@@ -1,5 +1,6 @@
 package com.project.buyit.bidding.domain.offers;
 
+import com.project.buyit.user.domain.UserDomain;
 import io.vavr.control.Option;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -20,9 +21,10 @@ public class GetOfferQuery {
 
     @Value
     public static class Output {
-        String description;
         String title;
-        BigDecimal currentPrice;
-        LocalDateTime deadlineDate;
+        String description;
+        LocalDateTime expirationDate;
+        BigDecimal startingPrice;
+        UserDomain creator;
     }
 }
